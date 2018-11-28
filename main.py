@@ -2,6 +2,8 @@
 from pprint import pprint as pp
 from flask import Flask, flash, redirect, render_template, request, url_for
 from weather import query_api
+from datetime import datetime
+import pytz
 app = Flask(__name__)
 @app.route('/')
 def index():
@@ -26,5 +28,18 @@ def result():
         'result.html',
         data=data,
         error=error)
+
+## przekazanie fuknkcji do temlpate html
+@app.context_processor
+def some_processor():
+    def date2string(date):
+        try:
+            datastr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%Y-%m-%d %H:%M")
+        except Exception as exc:
+            print(exc)
+            datastr = None
+        return datastr
+    return {'date2string': date2string}
+
 if __name__=='__main__':
     app.run(debug=True)
