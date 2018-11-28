@@ -34,11 +34,13 @@ def result():
 def some_processor():
     def date2string(date):
         try:
-            datastr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%Y-%m-%d %H:%M")
+            datastr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%Y-%m-%d")
+            timestr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%H:%M")
         except Exception as exc:
             print(exc)
             datastr = None
-        return datastr
+            timestr = None
+        return [datastr, timestr]
     return {'date2string': date2string}
 
 if __name__=='__main__':

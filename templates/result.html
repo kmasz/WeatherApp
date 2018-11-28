@@ -3,12 +3,11 @@
 <div class="center-on-page">a</div>
    {% for d in data[0]['list'] %}
    {% set my_string = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
-       <h1>
-     <img src="{{ my_string }}" class="svg" fill="white" height="100" vertical-align="middle" width="100">
-    </h1>
-    <h2>Weather</h2>
-    <h2>{{ d['main']['temp']|round|int}} C</h2>
-    <h2>{{ d['main']['pressure']|round|int}} hPa</h2>
-    <h2>{{ d['weather'][0]['description'] }}</h2>
-    <h2>{{ date2string(d['dt']) }}</h2> <!-- wywołanie funkcji z main.py poprzez @app.context_processor -->
+        <h3>{{ date2string(d['dt'])[0] }}</h3> <!-- wywołanie funkcji z main.py poprzez @app.context_processor -->    
+        <h3>{{ date2string(d['dt'])[1] }}
+        <img src="{{ my_string }}" class="svg" fill="white" height="100" vertical-align="middle" width="100">
+        {{ d['main']['temp']|round|int}} C,
+        {{ d['main']['pressure']|round|int}} hPa
+        <!-- {{ d['weather'][0]['description'] }} --></h3>
+    
 {% endfor %}
