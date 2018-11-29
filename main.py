@@ -17,6 +17,7 @@ def index():
 def result():
     data = []
     error = None
+    datatmp = ''
     select = request.form.get('comp_select')
     resp = query_api(select)
     pp(resp)
