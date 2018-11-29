@@ -19,7 +19,7 @@ def result():
     error = None
     select = request.form.get('comp_select')
     resp = query_api(select)
-    pp(resp)
+    #pp(resp)
     if resp:
        data.append(resp)
     if len(data) != 2:
@@ -34,7 +34,7 @@ def result():
 def some_processor():
     def date2string(date):
         try:
-            datastr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%Y-%m-%d")
+            datastr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%d-%m-%Y")
             timestr = pytz.utc.localize(datetime.utcfromtimestamp(date)).strftime("%H:%M")
         except Exception as exc:
             print(exc)

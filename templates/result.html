@@ -1,17 +1,20 @@
 <!doctype html>
 <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 <div class="center-on-page">test</div>
+<div class="right-side-page">
 {% set vars = {'data': ''} %}
    {% for d in data[0]['list'] %}
    {% set icon_addres = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
+   <h3>
    {% if vars.data != date2string(d['dt'])[0] %}
-        <h3>{{ date2string(d['dt'])[0] }}</h3> <!-- wywołanie funkcji z main.py poprzez @app.context_processor -->
+       <div class="test">{{ date2string(d['dt'])[0] }}</div><!-- wywołanie funkcji z main.py poprzez @app.context_processor -->
         {% endif %}
-        <h3>{{ date2string(d['dt'])[1] }}
-        <img src="{{ icon_addres }}" class="svg" fill="white" height="100" vertical-align="middle" width="100">
+        {{ date2string(d['dt'])[1] }}
+        <img src="{{ icon_addres }}" class="svg" fill="white" height="75" vertical-align="middle" width="75">
         {{ d['main']['temp']|round|int}} C,
         {{ d['main']['pressure']|round|int}} hPa
         <!-- {{ d['weather'][0]['description'] }} --></h3>
         {% if vars.update({'data': date2string(d['dt'])[0]}) %} {% endif %}
         
 {% endfor %}
+</div>
