@@ -1,20 +1,26 @@
 <!doctype html>
-<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
-<div class="center-on-page">test</div>
-<div class="right-side-page">
+<html lang="pl">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='w3.css') }}">
+<body>
+<div class="w3-container w3-black">
 {% set vars = {'data': ''} %}
-   {% for d in data[0]['list'] %}
-   {% set icon_addres = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
-   <h3>
-   {% if vars.data != date2string(d['dt'])[0] %}
-       <div class="test">{{ date2string(d['dt'])[0] }}</div><!-- wywołanie funkcji z main.py poprzez @app.context_processor -->
+{% for d in data[0]['list'][::2] %}
+{% set icon_addres = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
+        <div class="w3-cell-row">
+        <div class="w3-cell w3-right w3-large">
+
+        {% if vars.data != date2string(d['dt'])[0] %}
+           <span class="w3-cell-top">{{ date2string(d['dt'])[0] }}&nbsp&nbsp&nbsp</span> <!-- wywołanie funkcji z main.py poprzez @app.context_processor -->
         {% endif %}
         {{ date2string(d['dt'])[1] }}
-        <img src="{{ icon_addres }}" class="svg" fill="white" height="75" vertical-align="middle" width="75">
-        {{ d['main']['temp']|round|int}} C,
+        <img src="{{ icon_addres }}" class="svg" fill="white" height="65" vertical-align="middle" width="65">
+        <span class="w3-xlarge">{{ d['main']['temp']|round|int}}°C,</span>
         {{ d['main']['pressure']|round|int}} hPa
-        <!-- {{ d['weather'][0]['description'] }} --></h3>
+        <!-- {{ d['weather'][0]['description'] }} -->
         {% if vars.update({'data': date2string(d['dt'])[0]}) %} {% endif %}
-        
+        </div></div>
 {% endfor %}
 </div>
+</body>
+</html>
