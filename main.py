@@ -2,6 +2,7 @@
 from pprint import pprint as pp
 from flask import Flask, flash, redirect, render_template, request, url_for
 from weather import query_api
+from rss_test import query_rss
 from datetime import datetime
 import pytz
 app = Flask(__name__)
@@ -19,6 +20,7 @@ def result():
     error = None
     select = request.form.get('comp_select')
     resp = query_api(select)
+    news = query_rss()
     #pp(resp)
     if resp:
        data.append(resp)
@@ -27,7 +29,8 @@ def result():
     return render_template(
         'result.html',
         data=data,
-        error=error)
+        error=error,
+        news=news)
 
 ## przekazanie fuknkcji do temlpate html
 @app.context_processor
