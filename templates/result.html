@@ -1,4 +1,19 @@
 {% extends "base.html" %}
+{% block rss_news %}
+<div class="w3-container w3-black">
+        <h3>NewsFeed</h3>
+        {% for new in news %}
+                <div class="w3-card-4" style="width:95%">
+              
+                  <div class="w3-container">
+                    <p><B>{{new[0]}}</B><br>
+                    {{new[1]}}</p>
+                    <HR>
+                  </div>
+                </div>
+                {% endfor %}
+</div>
+{% endblock %}
 {% block weather %}
 <div class="w3-container w3-black">
 {% set vars = {'data': ''} %}
@@ -18,6 +33,4 @@
         {% if vars.update({'data': date2string(d['dt'])[0]}) %} {% endif %}
         </div></div>
 {% endfor %}
-{{news[3][0]}}<br>
-{{news[3][1]}}
 {% endblock %}

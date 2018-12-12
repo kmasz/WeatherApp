@@ -30,12 +30,12 @@
         <div class="w3-container w3-black">
             <div class="w3-container">Header</div>
             <div class="w3-cell-row">
-                <div class="w3-container w3-cell w3-border" >lewa<br> tutaj beda newsy<br>https://www.tvn24.pl/najnowsze.xml</div>
+                <div class="w3-container w3-cell w3-border" style="width:31%">{% block rss_news %}{% endblock %}</div>
                 <div class="w3-container w3-cell w3-border">Srodek<br>tu bedzie zegar i ewentualne info
                 <div class="w3-center w3-xlarge">Dziś jest XXXX </div>
                 <div id="clock" class="w3-center w3-jumbo"></div>
                 </div>
-                <div class="w3-container w3-cell w3-border">
+                <div class="w3-container w3-cell w3-border" style="width:31%">
                 {% block weather %}{% endblock %}
                 </div>
             </div>
