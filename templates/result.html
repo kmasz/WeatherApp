@@ -17,6 +17,10 @@
 {% block weather %}
 <div class="w3-container w3-black">
 {% set vars = {'data': ''} %}
+{% set icon = "static/img/" + data[0]['list'][0]['weather'][0]['icon']+ ".svg" %}
+<div class="w3-border w3-jumbo"><img src="{{ icon }}" class="svg" fill="white" height="90" vertical-align="middle" width="90">
+  {{ data[0]['list'][0]['main']['temp']}}°</div>
+
 {% for d in data[0]['list'][::2] %}
 {% set icon_addres = "static/img/" + d['weather'][0]['icon']+ ".svg" %}
         <div class="w3-cell-row">
