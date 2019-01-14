@@ -23,7 +23,7 @@ def result():
     news = query_rss()
     #pp(resp)
     if resp:
-       data.append(resp)
+        data.append(resp)
     if len(data) != 2:
         error = 'Bad Response from Weather API'
     return render_template(
